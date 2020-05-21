@@ -11,9 +11,9 @@
 name: Build And Deploy PACT Dev Branch to PROD App Service
 on:
   push:
-    branches: [ release ]
+    branches: [ master ]
   pull_request:
-    branches: [ release ]
+    branches: [ master ]
 
 env:
   AZURE_WEBAPP_NAME: 'gitworkflowsdev'    # set this to your Azure App Service name
