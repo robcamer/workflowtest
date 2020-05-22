@@ -33,10 +33,10 @@ jobs:
     - name: dotnet publish
       working-directory:  ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
       run: |
-        dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/pactwebapp
-    - name: 'Deploy to dev.PactCloud.com'
+        dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/webapp
+    - name: 'Deploy to dev'
       uses: azure/webapps-deploy@v1
       with:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE_DEV }}
-        package: ${{env.DOTNET_ROOT}}/pactwebapp
+        package: ${{env.DOTNET_ROOT}}/webapp
