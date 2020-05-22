@@ -10,11 +10,11 @@
 # For more samples to get started with GitHub Action workflows to deploy to Azure, refer to https://github.com/Azure/actions-workflow-samples
 name: Deploy master Branch to PROD App Service
 on:
-  push:
+  pull_request:
     branches: [ master ]
 
 env:
-  AZURE_WEBAPP_NAME: 'gitworkflowsdev'    # set this to your Azure App Service name
+  AZURE_WEBAPP_NAME: 'gitworkflowsprod'    # set this to your Azure App Service name
   AZURE_WEBAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
 
 jobs:
@@ -33,11 +33,10 @@ jobs:
     - name: dotnet publish
       working-directory:  ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
       run: |
-        dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/pactwebapp
-    - name: 'Deploy to dev.PactCloud.com'
+        dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/webapp
+    - name: 'Deploy to prod'
       uses: azure/webapps-deploy@v1
       with:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE_PROD }}
-        package: ${{env.DOTNET_ROOT}}/pactwebapp
-© 2020 GitHub, Inc.
+        package: ${{env.DOTNET_ROOT}}/webapp
