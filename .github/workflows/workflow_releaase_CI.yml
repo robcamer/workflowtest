@@ -8,7 +8,7 @@
 #
 # For more information on GitHub Actions for Azure, refer to https://github.com/Azure/Actions
 # For more samples to get started with GitHub Action workflows to deploy to Azure, refer to https://github.com/Azure/actions-workflow-samples
-name: Build And Deploy PACT release Branch to Release App Service
+name: Build And Test release Branch to Release App Service
 on:
   pull_request:
     branches: [ release ]
